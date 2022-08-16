@@ -16,7 +16,7 @@ export const Container = styled.div`
     height: 400px;
     max-width: 450px;
     border-radius: 12px;
-    padding: 60px 0 20px 0;
+    padding: 40px 0 10px 0;
     -webkit-box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.78);
     box-shadow: 5px 5px 15px -3px rgba(0, 0, 0, 0.78);
     animation: fadeInLogin 1s ease-out backwards;
@@ -86,7 +86,7 @@ export const Container = styled.div`
       }
     }
   }
-  @keyframes fadeInLogin {
+  @keyframes fadeInRegister {
     from {
       opacity: 0;
       transform: translateY(-35%);

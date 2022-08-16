@@ -34,7 +34,10 @@ export const MedicsProvider = ({ children }) => {
   const signUpUser = async (formData) => {
     try {
       const response = await api.post("/medics", formData);
-      console.log(response);
+      toast.success(`Usuário ${response.data.name} cadastrado com sucesso!`);
+      setTimeout(() => {
+        history.push("/login");
+      }, 2500);
     } catch (error) {
       toast.error("Email já cadastrado");
     }
