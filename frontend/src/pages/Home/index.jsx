@@ -4,6 +4,7 @@ import { Header } from "../../components/Header";
 import { toast } from "react-toastify";
 
 import { Container } from "./styles";
+import { Filter } from "../../components/Filter";
 
 export const Home = () => {
   const history = useHistory();
@@ -14,6 +15,7 @@ export const Home = () => {
   return (
     <Container>
       <Header />
+      <Filter />
     </Container>
   );
 };
