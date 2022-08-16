@@ -14,6 +14,7 @@ export const Filter = () => {
   };
   const handleClick = () => {
     applyFilter(input);
+    setInput("");
     document.getElementById("searchBar").value = "";
   };
 
@@ -23,6 +24,7 @@ export const Filter = () => {
         onChange={handleChangeInput}
         fullWidth
         id="searchBar"
+        size="small"
         variant="outlined"
         label="Pesquisar"
         InputProps={{
