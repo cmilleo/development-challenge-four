@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { LandingPageAnimation } from "../../components/LandingPageAnimation";
 import { PrimaryButton } from "../../styles/Global";
 
@@ -13,6 +14,7 @@ export const LandingPage = () => {
     });
   });
 
+  const history = useHistory();
   return (
     <Container>
       {windowSize <= 800 && (
@@ -37,7 +39,7 @@ export const LandingPage = () => {
             </h2>
           </div>
         )}
-        <PrimaryButton width="80%" style={{ margin: "0 auto" }}>
+        <PrimaryButton width="80%" style={{ margin: "0 auto" }} onClick={() => history.push("/login")}>
           Entrar
         </PrimaryButton>
       </div>

@@ -18,6 +18,7 @@ export const LandingPageAnimation = () => {
   };
   return (
     <div
+      className="animation"
       style={{
         width: "75%",
         display: "flex",

@@ -23,6 +23,7 @@ export const Container = styled.div`
         color: var(--blue-3);
       }
     }
+    animation: fadeInLanding 1s ease-in-out backwards;
   }
   .containerDetails {
     width: 75%;
@@ -43,6 +44,14 @@ export const Container = styled.div`
     border-top-left-radius: 70%;
     border-bottom-left-radius: 120%;
     right: 0;
+  }
+  .animation {
+    animation: fadeInLanding 1.3s ease-in-out backwards;
+    animation-delay: 0.3s;
+  }
+  button {
+    animation: fadeInLanding 1s ease-in-out backwards;
+    animation-delay: 0.6s;
   }
   @media (min-width: 800px) {
     flex-direction: row-reverse;
@@ -73,6 +82,17 @@ export const Container = styled.div`
       width: 400px;
       height: 60px;
       font-size: 25px;
+    }
+  }
+
+  @keyframes fadeInLanding {
+    from {
+      opacity: 0;
+      transform: translateY(-35%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 `;
