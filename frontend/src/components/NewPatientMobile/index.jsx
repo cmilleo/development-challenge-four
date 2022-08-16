@@ -35,6 +35,7 @@ export const NewPatientMobile = () => {
 
   const submit = async (data) => {
     data.medic = user.name;
+    data.birth_date = value;
     console.log(data);
     const response = await createPatient(data);
     if (!response) {
@@ -99,7 +100,6 @@ export const NewPatientMobile = () => {
                 size="small"
                 fullWidth
                 views={["day", "month", "year"]}
-                {...register("birth_date")}
                 value={value}
                 disableFuture={true}
                 onChange={handleChange}
