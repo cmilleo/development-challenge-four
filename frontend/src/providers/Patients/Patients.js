@@ -17,6 +17,7 @@ export const PatientsProvider = ({ children }) => {
     try {
       const response = await api.post("/patients", formData);
       setPatients([...patients, response.data]);
+      return response.data;
     } catch (error) {
       toast.error("Paciente já existe!");
     }
@@ -56,7 +57,15 @@ export const PatientsProvider = ({ children }) => {
   };
 
   return (
-    <PatientsContext.Provider value={{ patients, setPatients, createPatient, updatePatient }}>
+    <PatientsContext.Provider
+      value={{
+        patients,
+        setPatients,
+        createPatient,
+        updatePatient,
+        deletePatient,
+      }}
+    >
       {children}
     </PatientsContext.Provider>
   );

@@ -4,7 +4,7 @@ import { PatientsContext } from "../Patients/Patients";
 export const FilterContext = createContext([]);
 
 export const FilterProvider = ({ children }) => {
-  const [filtered, setFiltered] = useState(null);
+  const [filtered, setFiltered] = useState([]);
   const { patients } = useContext(PatientsContext);
 
   const applyFilter = (data) => {
@@ -14,6 +14,10 @@ export const FilterProvider = ({ children }) => {
       .sort((a, b) => a.localeCompare(b))
       .join("")
       .trim();
+
+    if (requestFilter.length <= 1) {
+      return setFiltered([]);
+    }
 
     const results = patients.filter((patient) => {
       return (
@@ -34,12 +38,18 @@ export const FilterProvider = ({ children }) => {
       );
     });
     if (!results) {
-      setFiltered(-1);
+      setFiltered([]);
       return;
     }
-    console.log(requestFilter);
-    setFiltered(results);
+    console.log(results);
+    setFiltered(() => {
+      return results;
+    });
   };
 
-  return <FilterContext.Provider value={{ filtered, setFiltered, applyFilter }}>{children}</FilterContext.Provider>;
+  return (
+    <FilterContext.Provider value={{ filtered, setFiltered, applyFilter }}>
+      {children}
+    </FilterContext.Provider>
+  );
 };

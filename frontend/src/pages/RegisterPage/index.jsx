@@ -9,11 +9,9 @@ import { AiFillEye, AiFillEyeInvisible, AiOutlineClose } from "react-icons/ai";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { loginSchema } from "../../validations/login.schema";
 import { PrimaryButton } from "../../styles/Global";
 import { useHistory } from "react-router-dom";
 import { MedicsContext } from "../../providers/Medics/Medics";
-import { SuccessRequisitonAnimation } from "../../components/SuccessRequisitonAnimation";
 import { registerSchema } from "../../validations/register.schema";
 
 export const RegisterPage = () => {
@@ -42,7 +40,10 @@ export const RegisterPage = () => {
       <div className="containerModal">
         <div className="headerModal">
           <h3>Registro</h3>
-          <AiOutlineClose className="backLanding" onClick={() => history.push("/")}>
+          <AiOutlineClose
+            className="backLanding"
+            onClick={() => history.push("/")}
+          >
             X
           </AiOutlineClose>
         </div>

@@ -10,6 +10,22 @@ export const MedicsProvider = ({ children }) => {
   const [successAnimation, setSuccesAnimation] = useState(false);
   const history = useHistory();
 
+  useEffect(() => {
+    const token = localStorage.getItem("@MedCloud:token");
+    if (token) {
+      const userLogged = localStorage.getItem("@MedCloud:userId");
+
+      api.defaults.headers.common["Authorization"] = token;
+
+      api.get("/medics").then((res) => {
+        const renewUser = res.data.find((user) => {
+          return user.id === userLogged;
+        });
+        setUser(renewUser);
+      });
+    }
+  });
+
   const loginUser = async (formData) => {
     try {
       const response = await api.post("/login", formData);
@@ -18,6 +34,7 @@ export const MedicsProvider = ({ children }) => {
 
       api.defaults.headers.common["Authorization"] = token;
       localStorage.setItem("@MedCloud:token", token);
+      localStorage.setItem("@MedCloud:userId", response.data.user.id);
       console.log(response);
       setUser(response.data.user);
 
@@ -44,7 +61,9 @@ export const MedicsProvider = ({ children }) => {
   };
 
   return (
-    <MedicsContext.Provider value={{ signUpUser, loginUser, successAnimation, user }}>
+    <MedicsContext.Provider
+      value={{ signUpUser, loginUser, successAnimation, user }}
+    >
       {children}
     </MedicsContext.Provider>
   );
