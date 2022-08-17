@@ -28,7 +28,6 @@ export const LoginPage = () => {
 
   const submit = async (data) => {
     await loginUser(data);
-    console.log(data);
   };
 
   const handlePassword = () => {

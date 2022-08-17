@@ -35,7 +35,6 @@ export const MedicsProvider = ({ children }) => {
       api.defaults.headers.common["Authorization"] = token;
       localStorage.setItem("@MedCloud:token", token);
       localStorage.setItem("@MedCloud:userId", response.data.user.id);
-      console.log(response);
       setUser(response.data.user);
 
       setSuccesAnimation(true);
@@ -61,9 +60,7 @@ export const MedicsProvider = ({ children }) => {
   };
 
   return (
-    <MedicsContext.Provider
-      value={{ signUpUser, loginUser, successAnimation, user }}
-    >
+    <MedicsContext.Provider value={{ signUpUser, loginUser, successAnimation, user }}>
       {children}
     </MedicsContext.Provider>
   );

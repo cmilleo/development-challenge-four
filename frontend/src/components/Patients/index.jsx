@@ -19,9 +19,7 @@ function Patients({ patient }) {
   const birthMask = new Date(birth_date).toLocaleString().split(" ")[0];
 
   const zipCodeMask =
-    String(zip_code).split("").slice(0, 5).join("") +
-    "-" +
-    String(zip_code).split("").slice(5).join("");
+    String(zip_code).split("").slice(0, 5).join("") + "-" + String(zip_code).split("").slice(5).join("");
 
   const handleDeletePatient = () => {
     deletePatient(patient.id);
@@ -29,7 +27,9 @@ function Patients({ patient }) {
   };
 
   const handleEditPatient = async (id, data) => {
-    console.log(id, data);
+    if (data.zip_code.length > 8) {
+      return toast.error("O Cep não pode conter mais de 8 digitos");
+    }
     await updatePatient(id, data);
     setShowEditPatientModal(false);
     toast.success("Paciente alterado com sucesso!");

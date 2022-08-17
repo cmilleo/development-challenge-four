@@ -7,6 +7,7 @@ import { Container } from "./styles";
 import { Filter } from "../../components/Filter";
 import { NewPatientMobile } from "../../components/NewPatientMobile";
 import PatientsContainer from "../../components/PatientsContainer";
+import NewPatientDesktop from "../../components/NewPatientDesktop";
 
 export const Home = () => {
   const history = useHistory();
@@ -27,8 +28,16 @@ export const Home = () => {
     <Container>
       <Header />
       {windowSize <= 850 && <NewPatientMobile />}
-      <Filter />
-      <PatientsContainer />
+
+      <div className="container">
+        {windowSize >= 850 && <NewPatientDesktop />}
+        {windowSize >= 850 && <div className="patchHome" />}
+
+        <main>
+          <Filter />
+          <PatientsContainer />
+        </main>
+      </div>
     </Container>
   );
 };
