@@ -11,6 +11,7 @@ export const Container = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 1300px;
 
     img {
       height: 50px;
