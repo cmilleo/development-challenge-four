@@ -10,28 +10,28 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 import ptLocale from "date-fns/locale/pt-BR";
 
-import { AiOutlineClose } from "react-icons/ai";
-
 import { newUserSchema } from "../../validations/newUser.schema";
 import { TextField } from "@mui/material";
 import { PatientsContext } from "../../providers/Patients/Patients";
 import { MedicsContext } from "../../providers/Medics/Medics";
+import { PrimaryButton } from "../../styles/Global";
 
-export const NewPatientMobile = () => {
-  const [showForm, setShowForm] = useState(false);
-  const [value, setValue] = useState(new Date("2000/01/01"));
-  const [animationout, setAnimationout] = useState(false);
+function NewPatientDesktop() {
+  const [value, setValue] = useState(new Date("2021/01/01"));
   const { createPatient } = useContext(PatientsContext);
   const { user } = useContext(MedicsContext);
   const handleChange = (newValue) => {
     setValue(newValue);
   };
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(newUserSchema) });
+
+  const localeMap = {
+    br: ptLocale,
+  };
 
   const submit = async (data) => {
     data.medic = user.name;
@@ -41,36 +41,14 @@ export const NewPatientMobile = () => {
       return;
     }
     toast.success("Paciente cadastrado com sucesso!");
-    handleShowForm();
-  };
-
-  const localeMap = {
-    br: ptLocale,
-  };
-  const handleShowForm = () => {
-    setAnimationout(!animationout);
-    setTimeout(() => {
-      setShowForm(false);
-    }, 1100);
   };
 
   return (
-    <Container animationout={animationout}>
-      {!showForm && (
-        <button
-          onClick={() => {
-            setShowForm(true);
-            setAnimationout(false);
-          }}
-        >
-          Novo Paciente
-        </button>
-      )}
-      {showForm && (
-        <form className="formPatientMobile" onSubmit={handleSubmit(submit)}>
+    <Container>
+      <div className="containerModal">
+        <form className="formPatientDesktop" onSubmit={handleSubmit(submit)}>
           <div className="headerModal">
             <h4>Cadastro de paciente</h4>
-            <AiOutlineClose onClick={handleShowForm} />
           </div>
           <TextField
             fullWidth
@@ -141,9 +119,11 @@ export const NewPatientMobile = () => {
               helperText={errors?.zip_code?.message}
             />
           </div>
-          <button>Cadastrar paciente</button>
+          <PrimaryButton>Cadastrar paciente</PrimaryButton>
         </form>
-      )}
+      </div>
     </Container>
   );
-};
+}
+
+export default NewPatientDesktop;

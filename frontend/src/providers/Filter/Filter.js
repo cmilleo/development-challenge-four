@@ -41,15 +41,10 @@ export const FilterProvider = ({ children }) => {
       setFiltered([]);
       return;
     }
-    console.log(results);
     setFiltered(() => {
       return results;
     });
   };
 
-  return (
-    <FilterContext.Provider value={{ filtered, setFiltered, applyFilter }}>
-      {children}
-    </FilterContext.Provider>
-  );
+  return <FilterContext.Provider value={{ filtered, setFiltered, applyFilter }}>{children}</FilterContext.Provider>;
 };

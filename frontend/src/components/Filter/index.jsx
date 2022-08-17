@@ -1,5 +1,5 @@
 import { InputAdornment, TextField } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import { FilterContext } from "../../providers/Filter/Filter";
 import { Container } from "./styles";

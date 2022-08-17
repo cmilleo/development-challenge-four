@@ -18,4 +18,7 @@ export const Container = styled.div`
       color: var(--gray-1);
     }
   }
+  @media (min-width: 850px) {
+    width: 95%;
+  }
 `;

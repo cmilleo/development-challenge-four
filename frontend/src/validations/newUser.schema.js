@@ -8,7 +8,6 @@ export const newUserSchema = yup
       .string()
       .email("Insira um email valido")
       .required("Insira o email do paciente"),
-    birth_date: yup.string().required("Selecione uma data de nascimento"),
     street: yup.string().required("Rua é obrigatório"),
     number: yup.string().required("Insira o número da residência"),
     city: yup.string().required("Insira a cidade"),

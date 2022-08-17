@@ -27,8 +27,6 @@ export const RegisterPage = () => {
 
   const submit = async (data) => {
     await signUpUser(data);
-
-    console.log(data);
   };
 
   const handlePassword = () => {
@@ -40,10 +38,7 @@ export const RegisterPage = () => {
       <div className="containerModal">
         <div className="headerModal">
           <h3>Registro</h3>
-          <AiOutlineClose
-            className="backLanding"
-            onClick={() => history.push("/")}
-          >
+          <AiOutlineClose className="backLanding" onClick={() => history.push("/")}>
             X
           </AiOutlineClose>
         </div>

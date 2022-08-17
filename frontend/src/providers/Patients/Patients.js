@@ -1,15 +1,16 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import api from "../../services/api";
 import { toast } from "react-toastify";
+import { MedicsContext } from "../Medics/Medics";
 
 export const PatientsContext = createContext([]);
 
 export const PatientsProvider = ({ children }) => {
   const [patients, setPatients] = useState([]);
-
+  const { user } = useContext(MedicsContext);
   useEffect(() => {
     api.get("/patients").then((res) => {
-      setPatients(res.data);
+      setPatients(res.data.filter((patient) => patient.medic.id === user?.id));
     });
   }, [patients]);
 
@@ -23,7 +24,7 @@ export const PatientsProvider = ({ children }) => {
     }
   };
 
-  const getPatient = async (id) => {
+  /*  const getPatient = async (id) => {
     const response = await api.get("/patients");
     const selectedPatient = response.find((patient) => patient.id === id);
 
@@ -32,7 +33,7 @@ export const PatientsProvider = ({ children }) => {
     }
 
     return selectedPatient;
-  };
+  }; */
 
   const updatePatient = async (id, formData) => {
     try {
